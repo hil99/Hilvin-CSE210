@@ -1,45 +1,64 @@
 using System;
-
+// I have added the time of when the prompt have been added to exceed the requirement. 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.Write("What is your grade percentage? ");
-        string answer = Console.ReadLine();
-        int percent = int.Parse(answer);
+        Journal journal = new Journal();
+        PromptGenerator promptGenerator = new PromptGenerator();
+        bool isRunning = true;
 
-        string letter = "";
+        while (isRunning)
+        {
+            Console.WriteLine("Menu:");
+            Console.WriteLine("1. Write");
+            Console.WriteLine("2. Display");
+            Console.WriteLine("3. Load");
+            Console.WriteLine("4. Save");
+            Console.WriteLine("5. Quit");
 
-        if (percent >= 90)
-        {
-            letter = "A";
-        }
-        else if (percent >= 80)
-        {
-            letter = "B";
-        }
-        else if (percent >= 70)
-        {
-            letter = "C";
-        }
-        else if (percent >= 60)
-        {
-            letter = "D";
-        }
-        else
-        {
-            letter = "F";
-        }
+            string choice = Console.ReadLine();
 
-        Console.WriteLine($"Your grade is: {letter}");
-        
-        if (percent >= 70)
-        {
-            Console.WriteLine("You passed!");
-        }
-        else
-        {
-            Console.WriteLine("Better luck next time!");
+            switch (choice)
+            {
+                case "1":
+                    string prompt = promptGenerator.GetRandomPrompt();
+                    Console.WriteLine(prompt);
+
+                    Entry newEntry = new Entry();
+                    newEntry._date = DateTime.Now.ToString();
+                    newEntry._promptText = prompt;
+
+                    Console.WriteLine("Your response: ");
+                    newEntry._entryText = Console.ReadLine();
+
+                    journal.AddEntry(newEntry);
+                    break;
+
+                case "2":
+                    journal.DisplayAll();
+                    break;
+
+                case "3":
+                    Console.WriteLine("Enter the file name to load:");
+                    string loadFileName = Console.ReadLine();
+                    journal.LoadFromFile(loadFileName);
+                    break;
+
+                case "4":
+                    Console.WriteLine("Enter the file name to save to:");
+                    string saveFileName = Console.ReadLine();
+                    journal.SaveToFile(saveFileName);
+                    break;
+
+                case "5":
+                    isRunning = false;
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid option. Try again.");
+                    break;
+            }
         }
     }
 }
