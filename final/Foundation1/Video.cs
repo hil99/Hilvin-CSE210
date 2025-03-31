@@ -6,14 +6,14 @@ public class Video {
     public string _title = "";
     public string _author = "";
     public double _lenght = 0;
-    public List<Comment> _comments = new List<Comment>{};
+    public List<addcomment> _comments = new List<addcomment>{};
     
     // Constructors
     public Video() {
-        _comments = new List<Comment>();
+        _comments = new List<addcomment>();
     }
     
-    public Video(string title, string author, double lenght, List<Comment> comments) {
+    public Video(string title, string author, double lenght, List<addcomment> comments) {
         _title = title;
         _comments = comments;
         _lenght = lenght;
@@ -28,9 +28,9 @@ public class Video {
         Console.Write($"Video title: {_title.ToUpper()} ");
         Console.Write($"Length {_lenght} by {_author}");
         Console.WriteLine("");
-        Console.WriteLine($"This video has {NumberOfComments()} COMMENTS:");
         Console.WriteLine("");
-        foreach (Comment c in _comments){
+        Console.WriteLine($"There is {NumberOfComments()} COMMENTS in this Video:");
+        foreach (addcomment c in _comments){
             Console.WriteLine($"{index}. {c.DisplayComment()}");       
             index++;
         ;

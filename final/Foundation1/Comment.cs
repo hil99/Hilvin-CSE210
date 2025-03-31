@@ -1,16 +1,17 @@
 using System;
 
-public class Comment {
+public class addcomment {
     // Attributes
+    
     public string _Name = "";
     public string _Comment = "";
     
-    // Constructors
-    public Comment() {
+   
+    public addcomment() {
         // Default constructor
     }
     
-    public Comment(string personName, string textComment) {
+    public addcomment(string personName, string textComment) {
         _Name = personName;
         _Comment = textComment;
     }
