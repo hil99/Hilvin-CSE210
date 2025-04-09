@@ -37,31 +37,24 @@ class Order {
     } 
 
     public string GeneratePackingList() {
-        string packingDetails = "";
-        string[] headers = { "ITEM #", "DESCRIPTION", "QTY", "UNIT PRICE" };
-        Console.WriteLine(string.Join("\t", headers[0], headers[1].PadRight(25), headers[2], headers[3]));
-
-
-        foreach (Product item in GetOrderItems())
-{
-    packingDetails += string.Format("\t{0}\t{1}\t\t{2}\t{3}\n",
-                                     item.GetProductID(),
-                                     item.GetProductName(),
-                                     item.GetProductQty(),
-                                     item.GetProductPrice());
+    
+    System.Text.StringBuilder packingBuilder = new System.Text.StringBuilder();
+    
+    
+    string[] headers = { "ITEM #", "DESCRIPTION", "QTY", "UNIT PRICE" };
+    Console.WriteLine($"{headers[0]}\t{headers[1].PadRight(25)}\t{headers[2]}\t{headers[3]}");
+    
+    
+    foreach(Product item in GetOrderItems()) {
+        packingBuilder.AppendLine($"\t{item.GetProductID()}\t{item.GetProductName()}\t\t{item.GetProductQty()}\t{item.GetProductPrice()}");
+    }
+    
+    return packingBuilder.ToString();
 }
 
-return packingDetails;
-    }
-
-    public string CreateShippingLabel(Customer client) {
-        string labelText = "";
-        labelText += "\t*****************************\n";
-        labelText += "\t" + client.GetClientName() + "\n";
-        labelText += client.PrintFormattedAddress() + "\n";
-        labelText += "\t*****************************\n";
-        return labelText;
-    }
+   public string CreateShippingLabel(Customer client) {
+    string labelText = ""; labelText += "\t*****************************\n"; labelText += "\t" + client.GetClientName() + "\n"; labelText += client.PrintFormattedAddress() + "\n"; labelText += "\t*****************************\n"; return labelText;
+}
 
     public double CalculateShippingRate(Customer client) {
     if (client.GetClientLocation().GetCountryName().ToLower() == "usa") {

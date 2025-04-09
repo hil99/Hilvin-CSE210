@@ -1,11 +1,10 @@
 class Customer {
-    private int _clientId = 0;
+    
     private Address _clientLocation = new Address();
     private string _clientName = "";
+    private int _client = 0;
 
-    public string GetClientName() {
-        return _clientName;
-    }
+    
 
     public Address GetClientLocation() {
         return _clientLocation;
@@ -14,17 +13,20 @@ class Customer {
     public bool IsInUSA() {
         return _clientLocation.IsInUSA();
     }
+    public string GetClientName() {
+        return _clientName;
+    }
+
+    public Customer(int client, string clientName, Address clientLocation) {
+    _client = client; _clientName = clientName; _clientLocation = clientLocation;
+}
 
    public Customer() : this(0, string.Empty, new Address()) { }
 
-public Customer(int clientId, string clientName, Address clientLocation) {
-    _clientId = clientId;
-    _clientName = clientName;
-    _clientLocation = clientLocation;
-}
 
 
     public string PrintFormattedAddress() {
         return _clientLocation.FormatFullAddress();
     }
 }
+

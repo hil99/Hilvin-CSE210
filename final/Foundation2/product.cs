@@ -22,11 +22,8 @@ class Product {
     public Product() { }
     
     public Product(int itemId, string itemName, double unitPrice, int quantity) {
-        _itemId = itemId;
-        _itemName = itemName;
-        _unitPrice = unitPrice;
-        _quantity = quantity;
-    }
+    _itemId = itemId; _itemName = itemName; _unitPrice = unitPrice; _quantity = quantity;
+}
 
     // Business logic
     public double CalculateLineTotal() {return _unitPrice * _quantity;

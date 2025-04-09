@@ -2,23 +2,24 @@ using System;
 using System.Collections.Generic;
 
 public class Video {
-    // Attributes
-    public string _title = "";
+    
     public string _author = "";
+    public string _title = "";
     public double _lenght = 0;
     public List<addcomment> _comments = new List<addcomment>{};
     
-    public Video(string title, string author, double lenght, List<addcomment> comments) {
-        _title = title;
-        _comments = comments;
-        _lenght = lenght;
-        _author = author;
-        }
-    // Constructors
-    public Video() {
-        _comments = new List<addcomment>();
-    }
+   // Primary constructor
+public Video(string title, string author, double lenght, List<addcomment> comments)
+{
+    _author = author; _comments = comments; _lenght = lenght; _title = title;
+}
+
+// Default constructor with initialization
+public Video() 
+    : this("", "", 0, new List<addcomment>())
+{
     
+}
     
     
     // Methods

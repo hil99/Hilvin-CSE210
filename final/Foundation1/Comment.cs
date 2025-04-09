@@ -1,15 +1,15 @@
 using System;
 
 public class addcomment {
-    // Attributes
+
     
-    public string _Name = "";
-    public string _Comment = "";
-    
-   
-    public addcomment() {
+   public addcomment() {
         // Default constructor
     }
+
+
+     public string _Name = "";
+    public string _Comment = "";
     
     public addcomment(string personName, string textComment) {
         _Name = personName;
