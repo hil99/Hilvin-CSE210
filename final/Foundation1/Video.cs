@@ -8,17 +8,18 @@ public class Video {
     public double _lenght = 0;
     public List<addcomment> _comments = new List<addcomment>{};
     
-    // Constructors
-    public Video() {
-        _comments = new List<addcomment>();
-    }
-    
     public Video(string title, string author, double lenght, List<addcomment> comments) {
         _title = title;
         _comments = comments;
         _lenght = lenght;
         _author = author;
         }
+    // Constructors
+    public Video() {
+        _comments = new List<addcomment>();
+    }
+    
+    
     
     // Methods
     public void Videoinfomation(){

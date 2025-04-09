@@ -38,15 +38,20 @@ class Order {
 
     public string GeneratePackingList() {
         string packingDetails = "";
-        Console.WriteLine("   ITEM #" + "\t" + "DESCRIPTION" + "\t\t\t" + "QTY" + "\t" + "UNIT PRICE");
+        string[] headers = { "ITEM #", "DESCRIPTION", "QTY", "UNIT PRICE" };
+        Console.WriteLine(string.Join("\t", headers[0], headers[1].PadRight(25), headers[2], headers[3]));
 
-        foreach(Product item in GetOrderItems()) {
-            packingDetails += "\t" + item.GetProductID() + "\t" + 
-                              item.GetProductName() + "\t\t" + 
-                              item.GetProductQty() + "\t" + 
-                              item.GetProductPrice() + "\n";
-        }
-        return packingDetails;
+
+        foreach (Product item in GetOrderItems())
+{
+    packingDetails += string.Format("\t{0}\t{1}\t\t{2}\t{3}\n",
+                                     item.GetProductID(),
+                                     item.GetProductName(),
+                                     item.GetProductQty(),
+                                     item.GetProductPrice());
+}
+
+return packingDetails;
     }
 
     public string CreateShippingLabel(Customer client) {
